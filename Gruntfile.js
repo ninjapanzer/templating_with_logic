@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          src: [ '**/*.jade', '!shared/**', '!bower_components/**' ],
+          src: [ '**/*.jade', '!shared/**', '!bower_components/**', '!node_modules/**' ],
           ext: '.html'
         }]
       }
