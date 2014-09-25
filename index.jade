@@ -12,13 +12,15 @@ html(lang="en")
     .reveal
       .slides
         +titleSlide({title: "Jade",subtitle: "Templating With Logic"})
-        +ulSlide("So what happened", [
-          "Ideology",
-          "Ignorance",
-          "Pedagogy"
-          ])
-        +bigTitleSlide("The defense against Ignorance")
-          p Why do we go to school?
+        +slide
+          :markdown
+            ## So what happened
+            - Ideology
+            - Ignorance
+            - Pedagogy
+
+        +bigTitleSlide("defense against Ignorance!")
+          h3 and why do we go to school?
 
           +speakerNotes
             :markdown
@@ -30,7 +32,7 @@ html(lang="en")
               # What does logic in the view look like?
 
           +slide
-            h2 Examples
+            h2 Example
             a(href='https://github.com/ninjapanzer/templating_with_logic/blob/master/slim_too_much_nesting.slim') Slim
 
         +slideGroup
