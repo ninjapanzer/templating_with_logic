@@ -13,31 +13,67 @@ html(lang="en")
       .slides
         +titleSlide({title: "Jade",subtitle: "Templating With Logic"})
         +ulSlide("So what happened", [
-          "Just look at my github",
-          "Absence does NOT make the heart grow fonder",
-          "Don't get bogged down with ceremony"
+          "Ideology",
+          "Ignorance",
+          "Pedagogy"
           ])
-        +bigTitleSlide("Ceremony :(")
-          p You have to learn you are not at work and no one is paying you
+        +bigTitleSlide("The defense against Ignorance")
+          p Why do we go to school?
+
+          +speakerNotes
+            :markdown
+              We should have enough rope to hang ourselves
+
+        +slideGroup
+          +slide
+            :markdown
+              # What does logic in the view look like?
+
+          +slide
+            h2 Examples
+            a(href='https://github.com/ninjapanzer/templating_with_logic/blob/master/slim_too_much_nesting.slim') Slim
+
+        +slideGroup
+
+          +slide
+            :markdown
+              # I can prove it is a good idea in one word
+
+          +slide
+            :markdown
+              #SASS
 
         +slide
           :markdown
-            # Take risks
-            ### If it slow going see previous slide
+            ## The Benefits
+            - Can hang yourself
+            - Speed (3.5x faster than ejs)
+            - Block and Mixins
+            - Markdown
+
+        +slide
+          h2 Anatomy of a Mixin
+          +codeBlock({})
+            |mixin ulFragmentSlide(title,list,attrs)
+            |+slide(attrs)
+            |     h3= title
+            |     +ulFragment(list)
+            |       block
 
         +slide
           :markdown
-            # Its about happpiness
-            ### Not money
-
-          aside.notes
-            p If you only do things for money you will end up unhappy
-            p work for praise
+            ## Samples
+            - https://github.com/ninjapanzer/RevealJade/blob/master/shared/slide_mixins.jade
+            - https://github.com/ninjapanzer/RevealJade/blob/master/shared/fragment_mixins.jade
 
         +bigTitleSlide("Finally")
-          p Talk about your work
-          aside.notes
-            p The best part of doing side work is showing it off
-            p my best known work even at work was a sideline effort if I hadn't shared it I would never have been praised for it
+          p Try Jade in your node project
+
+        +slide
+          :markdown
+            ## References
+            - http://www.ebaytechblog.com/2012/10/01/the-case-against-logic-less-templates/
+            - http://paularmstrong.github.io/node-templates/benchmarks.html
+            - https://github.com/ninjapanzer/RevealJade
 
     include bower_components/RevealJade/shared/footer
