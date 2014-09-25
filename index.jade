@@ -55,17 +55,17 @@ html(lang="en")
           h2 Anatomy of a Mixin
           +codeBlock({})
             |mixin ulFragmentSlide(title,list,attrs)
-            |+slide(attrs)
-            |     h3= title
-            |     +ulFragment(list)
-            |       block
+            |  +slide(attrs)
+            |    h3= title
+            |    +ulFragment(list)
+            |      block
 
         +slide
           :markdown
             ## Samples
-            - https://github.com/ninjapanzer/RevealJade/blob/master/shared/slide_mixins.jade
-            - https://github.com/ninjapanzer/RevealJade/blob/master/shared/fragment_mixins.jade
-            - https://github.com/ninjapanzer/templating_with_logic/blob/master/index.jade
+            - [Slide Mixins](https://github.com/ninjapanzer/RevealJade/blob/master/shared/slide_mixins.jade)
+            - [Fragments](https://github.com/ninjapanzer/RevealJade/blob/master/shared/fragment_mixins.jade)
+            - [Presentation](https://github.com/ninjapanzer/templating_with_logic/blob/master/index.jade)
 
         +bigTitleSlide("Finally")
           p Try Jade in your node project
@@ -73,8 +73,8 @@ html(lang="en")
         +slide
           :markdown
             ## References
-            - http://www.ebaytechblog.com/2012/10/01/the-case-against-logic-less-templates/
-            - http://paularmstrong.github.io/node-templates/benchmarks.html
-            - https://github.com/ninjapanzer/RevealJade
+            - [Case against Logic-less templates](http://www.ebaytechblog.com/2012/10/01/the-case-against-logic-less-templates/)
+            - [JS Templating Benchmarks](http://paularmstrong.github.io/node-templates/benchmarks.html)
+            - [RevealJade](https://github.com/ninjapanzer/RevealJade)
 
     include bower_components/RevealJade/shared/footer
