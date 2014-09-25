@@ -1,0 +1,96 @@
+- if @decorator.any?
+  table.student_list_table
+    thead
+      tr
+        th
+          | Name
+          - if FeatureFlagHelper.mcr_updates?
+            span.username_password_text
+              | Username | Password
+        - unless FeatureFlagHelper.mcr_updates?
+          th Username
+          th Password
+        th.centered Grade
+        th Classroom(s)
+        th Active
+        - if @decorator.allow_edit?
+          th.centered Edit
+    tbody
+      - @decorator.students.each do |student|
+        tr id="row_#{student.id}"
+          = form_for student, remote: true, method: :post, url: student_switch_active_path(student) do |s|
+
+            - if FeatureFlagHelper.mcr_updates?
+              td.student_list_table_name_cell_mcr_student_table
+                = student.name
+                span.username_password_text
+                  =' student.username
+                  ' |
+                  = student.cleartext_password
+            - else
+              td.student_list_table_name_cell
+                = student.name
+
+            - unless FeatureFlagHelper.mcr_updates?
+              td.student_list_table_username_cell
+                = student.username
+              td.student_list_table_password_cell
+                = student.cleartext_password
+
+            - if FeatureFlagHelper.mcr_updates?
+              td.student_list_table_grade_cell_mcr_student_table
+                = student.grade_level.number
+            - else
+              td.student_list_table_grade_cell
+                = student.grade_level.name
+
+            - if FeatureFlagHelper.mcr_updates?
+              td.student_list_table_classroom_cell_mcr_student_table
+                - student.classrooms.each do |classroom|
+                  =' link_to classroom.name, classroom_students_path(classroom)
+                  span.pathway_links
+                    - if student.is_active? && student.pathway_assigned_for_classroom?(classroom)
+                      - if @decorator.display_view_pathway
+                        ' (
+                        =' link_to "View Student Progress", student_enrollment_redirect_path(id: student.id, classroom_id: classroom.id)
+                        | )
+                    br
+            - else
+              td.student_list_table_classroom_cell
+                - student.classrooms.each do |classroom|
+                  = "#{classroom.name} "
+                  br
+                  - if @decorator.display_enroll && student.is_active?
+                    - if student.pathway_assigned_for_classroom?(classroom)
+                      - if @decorator.display_view_pathway
+                        =' link_to "View Pathway", student_enrollment_redirect_path(id: student.id, classroom_id: classroom.id)
+                        ' |
+                    = link_to "(Enroll)", new_pathway_enrollment_path(id: student.id, classroom_id: classroom.id)
+                  br
+
+
+            td.student_list_table_active_cell
+              - if student.allow_active_checkbox?
+                = check_box_tag "active_#{student.id}", student.is_active?, student.is_active?, data: {path: student_switch_active_path(student), student_id: student.id, is_active: student.is_active?}, class: 'classroom_student_active_submittable', onchange: "removeTableRow(#{student.id})"
+
+            - if @decorator.allow_edit?
+              - if FeatureFlagHelper.mcr_updates?
+                td.student_list_table_edit_cell_mcr_student_table
+                  - if student.is_active?
+                    = link_to(image_tag("admin_teacher/edit_pencil.png"), edit_classroom_student_path(student.first_classroom_id, student, redirect_url: list_students_path))
+              - else
+                td.student_list_table_edit_cell
+                  - if student.is_active?
+                    = link_to(image_tag("admin_teacher/edit_pencil.png"), edit_classroom_student_path(student.first_classroom_id, student, redirect_url: list_students_path))
+
+  = paginate @decorator.query
+- else
+  .content.no_results
+    ' No students found.
+    -if current_user.teacher? && current_user.classroom_teachings.empty?
+      br
+      ' Please add a class to get started.
+      br
+      br
+      = link_to new_school_classroom_path(current_user.assigned_school), class: "btn" do
+        span Create a Class
