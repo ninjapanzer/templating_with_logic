@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+    <link id="theme" rel="stylesheet" href="bower_components/reveal.js/css/theme/moon.css">
+    <!-- For syntax highlighting-->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+    <script src="//localhost:35729/livereload.js"></script>
+    <script>var revealLocation = 'bower_components/reveal.js/'</script>
+    <!--if lt IE 9
+    script(src= revealLocation + 'lib/js/html5shiv.js')
+    
+    -->
+    <script>
+      document.write( '<link rel="stylesheet" href="' + revealLocation + 'css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+      if(window.location.search.match( /print-pdf/gi )){
+        document.write('<style>.reveal aside.notes{display:block;font-size:0.4em;}.reveal aside.notes:before{content: "Notes: ";font-weight: bold;}</style>');
+      }
+    </script>
+  </head>
+  <link rel="external" type="text/html" src="bower_components/RevealJade/shared/head.jade">
+  <body>
+    <div class="reveal">
+      <div class="slides">
+            <section>
+              <h1>Jade</h1>
+              <h3>Templating With Logic</h3>
+              <p>
+                <div class="left"><small></small></div>
+                <div class="left"><small class="twitter"></small></div>
+                <div class="left"><small class="email"></small></div>
+              </p>
+              <aside class="notes">Title Slide</aside>
+            </section>
+          <section><h2 id="so-what-happened">So what happened</h2>
+<ul>
+<li>Ideology</li>
+<li>Ignorance</li>
+<li>Pedagogy</li>
+</ul>
+
+          </section>
+            <section>
+              <h1>defense against Ignorance!</h1>
+              <h3>and why do we go to school?</h3>
+                <aside class="notes"><p>We should have enough rope to hang ourselves</p>
+
+                </aside>
+            </section>
+            <section>
+                <section><h1 id="what-does-logic-in-the-view-look-like-">What does logic in the view look like?</h1>
+
+                </section>
+                <section>
+                  <h2>Example</h2><a href="https://github.com/ninjapanzer/templating_with_logic/blob/master/slim_too_much_nesting.slim">Slim</a>
+                </section>
+            </section>
+            <section>
+                <section><h1 id="i-can-prove-it-is-a-good-idea-in-one-word">I can prove it is a good idea in one word</h1>
+
+                </section>
+                <section><p>#SASS</p>
+
+                </section>
+            </section>
+          <section><h2 id="the-benefits">The Benefits</h2>
+<ul>
+<li>Can hang yourself</li>
+<li>Speed (3.5x faster than ejs)</li>
+<li>Block and Mixins</li>
+<li>Markdown</li>
+</ul>
+
+          </section>
+          <section>
+            <h2>Anatomy of a Mixin</h2>
+                <section>
+                    <pre><code>
+                        mixin ulFragmentSlide(title,list,attrs)
+                         +slide(attrs)
+                           h3= title
+                           +ulFragment(list)
+                             block</code></pre>
+                </section>
+          </section>
+          <section><h2 id="samples">Samples</h2>
+<ul>
+<li><a href="https://github.com/ninjapanzer/RevealJade/blob/master/shared/slide_mixins.jade">Slide Mixins</a></li>
+<li><a href="https://github.com/ninjapanzer/RevealJade/blob/master/shared/fragment_mixins.jade">Fragments</a></li>
+<li><a href="https://github.com/ninjapanzer/templating_with_logic/blob/master/index.jade">Presentation</a></li>
+</ul>
+
+          </section>
+            <section>
+              <h1>Finally</h1>
+              <p>Try Jade in your node project</p>
+            </section>
+          <section><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.ebaytechblog.com/2012/10/01/the-case-against-logic-less-templates/">Case against Logic-less templates</a></li>
+<li><a href="http://paularmstrong.github.io/node-templates/benchmarks.html">JS Templating Benchmarks</a></li>
+<li><a href="https://github.com/ninjapanzer/RevealJade">RevealJade</a></li>
+</ul>
+
+          </section>
+      </div>
+    </div>
+    <script type="text/javascript" src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script type="text/javascript" src="bower_components/reveal.js/js/reveal.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+       Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'moon',
+        slideNumber: true,
+        transition: 'concave',
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: revealLocation + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: revealLocation + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: revealLocation + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+       });
+    </script>
+  </body>
+</html>
